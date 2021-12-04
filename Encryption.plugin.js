@@ -16,9 +16,7 @@ var Encryption = (() => {
             "github_raw": "https://raw.githubusercontent.com/auxsyo/BetterDiscordPlugins/main/Encryption.plugin.js"
         },
     }
-    //const config = {
-     //   "info": { "name": "Encryption", "authors": [{ "name": "auxsyo", "discord_id": "263491576855134208", "github_username": "auxsyo", "twitter_username": "auxsyo" }], "version": "0.4.0", "description": "Encrypt text by [[TEXT]] -> 'VkVWWVZBPT0=' and Decrypt text by {{VkVWWVZBPT0=}} -> 'TEXT' ", "github": "https://github.com/auxsyo/BetterDiscordPlugins", "github_raw": "https://raw.githubusercontent.com/auxsyo/BetterDiscordPlugins/main/Encryption.plugin.js" }};
-
+    
     return !global.ZeresPluginLibrary ? class {
         constructor() { this._config = config; }
         getName() { return config.info.name; }

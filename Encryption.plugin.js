@@ -1,9 +1,23 @@
-//META{"name":"Encryption","displayName":"Encryption","website":"https://github.com/auxsyo/BetterDiscordPlugins","source":"https://raw.githubusercontent.com/auxsyo/BetterDiscordPlugins/master/Encryption.plugin.js"}*//
+//META{"name":"Encryption","displayName":"Encryption","website":"https://github.com/auxsyo/BetterDiscordPlugins","source":"https://raw.githubusercontent.com/auxsyo/BetterDiscordPlugins/main/Encryption.plugin.js"}*//
 
 
 var Encryption = (() => {
     const config = {
-        "info": { "name": "Encryption", "authors": [{ "name": "auxsyo", "discord_id": "263491576855134208", "github_username": "auxsyo", "twitter_username": "auxsyo" }], "version": "0.4.0", "description": "Encrypt text by [[TEXT]] -> 'VkVWWVZBPT0=' and Decrypt text by {{VkVWWVZBPT0=}} -> 'TEXT' ", "github": "https://github.com/auxsyo/BetterDiscordPlugins", "github_raw": "https://raw.githubusercontent.com/auxsyo/BetterDiscordPlugins/master/Encryption.plugin.js" }};
+        "info": {
+            "name": "Encryption",
+            "authors": [{
+                "name": "auxsyo",
+                "discord_id": "263491576855134208",
+                "github_username": "auxsyo"
+            }],
+            "version": "1.0.2",
+            "description": "Encrypt text by [[TEXT]] -> 'VkVWWVZBPT0=' and Decrypt text by {{VkVWWVZBPT0=}} -> 'TEXT' \n Based off of Zalgo plugin.",
+            "github": "https://github.com/auxsyo/BetterDiscordPlugins",
+            "github_raw": "https://raw.githubusercontent.com/auxsyo/BetterDiscordPlugins/main/Encryption.plugin.js"
+        },
+    }
+    //const config = {
+     //   "info": { "name": "Encryption", "authors": [{ "name": "auxsyo", "discord_id": "263491576855134208", "github_username": "auxsyo", "twitter_username": "auxsyo" }], "version": "0.4.0", "description": "Encrypt text by [[TEXT]] -> 'VkVWWVZBPT0=' and Decrypt text by {{VkVWWVZBPT0=}} -> 'TEXT' ", "github": "https://github.com/auxsyo/BetterDiscordPlugins", "github_raw": "https://raw.githubusercontent.com/auxsyo/BetterDiscordPlugins/main/Encryption.plugin.js" }};
 
     return !global.ZeresPluginLibrary ? class {
         constructor() { this._config = config; }
@@ -16,7 +30,7 @@ var Encryption = (() => {
             const ModalStack = BdApi.findModuleByProps("push", "update", "pop", "popWithKey");
             const TextElement = BdApi.findModuleByProps("Sizes", "Weights");
             const ConfirmationModal = BdApi.findModule(m => m.defaultProps && m.key && m.key() == "confirm-modal");
-            if (!ModalStack || !ConfirmationModal || !TextElement) return BdApi.alert(title, `The library plugin needed for ${config.info.name} is missing.<br /><br /> <a href="https://betterdiscord.net/ghdl?url=https://raw.githubusercontent.com/rauenzi/BDPluginLibrary/master/release/0PluginLibrary.plugin.js" target="_blank">Click here to download the library!</a>`);
+            if (!ModalStack || !ConfirmationModal || !TextElement) return BdApi.alert(title, `The library plugin needed for ${config.info.name} is missing.<br /><br /> <a href="https://betterdiscord.net/ghdl?url=https://raw.githubusercontent.com/rauenzi/BDPluginLibrary/main/release/0PluginLibrary.plugin.js" target="_blank">Click here to download the library!</a>`);
             ModalStack.push(function (props) {
                 return BdApi.React.createElement(ConfirmationModal, Object.assign({
                     header: title,
@@ -26,7 +40,7 @@ var Encryption = (() => {
                     cancelText: "Cancel",
                     onConfirm: () => {
                         require("request").get("https://rauenzi.github.io/BDPluginLibrary/release/0PluginLibrary.plugin.js", async (error, response, body) => {
-                            if (error) return require("electron").shell.openExternal("https://betterdiscord.net/ghdl?url=https://raw.githubusercontent.com/rauenzi/BDPluginLibrary/master/release/0PluginLibrary.plugin.js");
+                            if (error) return require("electron").shell.openExternal("https://betterdiscord.net/ghdl?url=https://raw.githubusercontent.com/rauenzi/BDPluginLibrary/main/release/0PluginLibrary.plugin.js");
                             await new Promise(r => require("fs").writeFile(require("path").join(ContentManager.pluginsFolder, "0PluginLibrary.plugin.js"), body, r));
                         });
                     }
